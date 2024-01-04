@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASA APOD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #bbbbbb;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            width: 80%;
+            height: 80%;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        #apodImage {
+            max-width: 60%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #333333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 20px;
+            color: #666666;
+        }
+        #apodExplanation {
+            font-size: 17px;
+            text-align: left;
+        }
+        #srr {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Astronomy Picture of the Day</h1>
+        <img id="apodImage" src="" alt="APOD Image">
+        <h2 id="apodTitle"></h2>
+        <p id="apodExplanation"></p>
+        <p id="apodDate"></p>
+        <p id="srr">Source. NASA</p>
+    </div>
+
+    <script>
+        fetch(`https://api.nasa.gov/planetary/apod?api_key=Bo7MdhmFoLzlsb7J3SbTYfG7HspYI4d5RzKRML4H`).then(response => response.json()).then(data => {date = data['date'];img_url = data['url'];explanation = data['explanation'];title = data['title'];document.getElementById('apodImage').src = img_url;document.getElementById('apodTitle').innerText = title;document.getElementById('apodDate').innerText = date;document.getElementById('apodExplanation').innerText = explanation;});
+    </script>
+</body>
+</html>
